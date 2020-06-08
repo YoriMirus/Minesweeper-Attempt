@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vojta\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {}
+    "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vojta\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {
+    "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vojta\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
+        "projectUniqueName": "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj",
         "projectName": "Minesweeper",
-        "projectPath": "C:\\Users\\vojta\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
+        "projectPath": "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj",
         "packagesPath": "C:\\Users\\vojta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vojta\\source\\repos\\Minesweeper\\Minesweeper\\obj\\",
+        "outputPath": "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vojta\\AppData\\Roaming\\NuGet\\NuGet.Config",
