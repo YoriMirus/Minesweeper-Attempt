@@ -11,3 +11,16 @@ C:\Users\vojta\source\repos\Minesweeper\Minesweeper\obj\Debug\netcoreapp3.1\Mine
 C:\Users\vojta\source\repos\Minesweeper\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.dll
 C:\Users\vojta\source\repos\Minesweeper\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.pdb
 C:\Users\vojta\source\repos\Minesweeper\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.genruntimeconfig.cache
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.exe
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.deps.json
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.runtimeconfig.json
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.runtimeconfig.dev.json
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.dll
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.pdb
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.csprojAssemblyReference.cache
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.csproj.CoreCompileInputs.cache
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.AssemblyInfoInputs.cache
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.AssemblyInfo.cs
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.dll
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.pdb
+F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.genruntimeconfig.cache

@@ -6,6 +6,7 @@ namespace Minesweeper
     //Class containing methods useful only inside the class
     partial class Map
     {
+        private static Random MinePlacer = new Random();
         /// <summary>
         /// Fills the map with a default character - O.
         /// </summary>
