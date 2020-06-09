@@ -21,13 +21,12 @@ namespace Minesweeper
          * Other
          * 
          * 9 = Marked empty space
-         * 13 = Marked mine
          * 10 = Undiscovered mine
          * 11 = Discovered mine (in case I want to implement multiple lives)
          * 12 = Not yet revealed
+         * 13 = Marked mine
          */
         public static int MinesAmount { get; set; }
-        public static int MinesLeft { get; set; }
         public static int XLength { get; set; }
         public static int YLength { get; set; }
         public static int[,] Layout { get; set; }
@@ -37,12 +36,13 @@ namespace Minesweeper
         /// </summary>
         public static void Prepare()
         {
-            int lives;
             int mines;
             Console.WriteLine("Welcome to minesweeper!");
             Console.WriteLine("Use arrows or WASD to move with a cursor.");
             Console.WriteLine("Once you choose a field press enter to reveal it.");
             Console.WriteLine("If you suspect there is a mine press space to mark it.");
+            Console.WriteLine("If you see alot of question marks then change your console font!");
+            Console.WriteLine("Test text: こんにちは！");
             Console.WriteLine("Press anything to continue.");
             Console.ReadKey();
             Console.Clear();
@@ -111,7 +111,7 @@ namespace Minesweeper
                     Console.Write("Mines: ");
                     mines = int.Parse(Console.ReadLine());
 
-                    if (XLength * YLength < mines)
+                    if (XLength * YLength < mines && mines > 0)
                         throw e;
                     break;
                 }
@@ -122,34 +122,61 @@ namespace Minesweeper
                     Console.WriteLine("Try again!");
                 }
             }
+            Console.Clear();
 
             Layout = new int[XLength, YLength];
             Fill();
             MinesAmount = mines;
-            MinesLeft = mines;
             SetMines(mines);
         }
         public static void Display()
         {
             for (int i = 0; i < XLength + 2; i++)
-                Console.Write("-");
+                Console.Write("－");
             Console.WriteLine();
 
             for(int i = 0; i < YLength; i++)
             {
-                Console.Write("|");
+                Console.Write("｜");
                 for (int j = 0; j < XLength; j++)
                 {
                     switch(Layout[j, i])
                     {
+                        case 0:
+                            Console.Write("　");
+                            break;
+                        case 1:
+                            Console.Write("１");
+                            break;
+                        case 2:
+                            Console.Write("２");
+                            break;
+                        case 3:
+                            Console.Write("３");
+                            break;
+                        case 4:
+                            Console.Write("４");
+                            break;
+                        case 5:
+                            Console.Write("５");
+                            break;
+                        case 6:
+                            Console.Write("６");
+                            break;
+                        case 7:
+                            Console.Write("７");
+                            break;
+                        case 8:
+                            Console.Write("８");
+                            break;
                         case  9: //Mark on empty space
-                            Console.Write("+");
+                            Console.Write("＋");
                             break;
                         case 10: //Unrevealed unmarked mine
-                            Console.Write(" ");
+                            Console.Write("＃");
                             break;
                         case 11: //Revealed mine
-                            Console.Write("*");
+                            Console.Write("＊");
                             break;
                         case 12: //Unrevealed position
                             goto case 10;
@@ -160,11 +187,11 @@ namespace Minesweeper
                             break;
                     }
                 }
-                Console.WriteLine("|");
+                Console.WriteLine("｜");
             }
 
             for (int i = 0; i < XLength + 2; i++)
-                Console.Write("-");
+                Console.Write("－");
             Console.WriteLine();
         }
         /// <summary>
@@ -178,38 +205,38 @@ namespace Minesweeper
             //Corners
             if(x == 0 && y == 0) //Top left
             {
-                if (Layout[0, 1] == 10)
+                if (Layout[0, 1] == 10 || Layout[0, 1] == 11 || Layout[0, 1] == 13)
                     mines++;
-                if (Layout[1, 0] == 10)
+                if (Layout[1, 0] == 10 || Layout[1, 0] == 11 || Layout[1, 0] == 13)
                     mines++;
-                if (Layout[1, 1] == 10)
+                if (Layout[1, 1] == 10 || Layout[1, 1] == 11 || Layout[1, 1] == 13)
                     mines++;
             }
             else if (x == XLength - 1 && y == 0) // Top right
             {
-                if (Layout[XLength - 2, 0] == 10)
+                if (Layout[XLength - 2, 0] == 10 || Layout[XLength - 2, 0] == 11 || Layout[XLength - 2, 0] == 13)
                     mines++;
-                if (Layout[XLength - 2, 1] == 10)
+                if (Layout[XLength - 2, 1] == 10 || Layout[XLength - 2, 1] == 11 || Layout[XLength - 2, 1] == 13)
                     mines++;
-                if (Layout[XLength - 1, 1] == 10)
+                if (Layout[XLength - 1, 1] == 10 || Layout[XLength - 1, 1] == 11 || Layout[XLength - 1, 1] == 13)
                     mines++;
             }
             else if (x == 0 && y == YLength - 1) // Bottom left
             {
-                if (Layout[0, YLength - 2] == 10)
+                if (Layout[0, YLength - 2] == 10 || Layout[0, YLength - 2] == 11 || Layout[0, YLength - 2] == 13)
                     mines++;
-                if (Layout[1, YLength - 2] == 10)
+                if (Layout[1, YLength - 2] == 10 || Layout[1, YLength - 2] == 11 || Layout[1, YLength - 2] == 13)
                     mines++;
-                if (Layout[1, YLength - 1] == 10)
+                if (Layout[1, YLength - 1] == 10 || Layout[1, YLength - 1] == 11 || Layout[1, YLength - 1] == 13)
                     mines++;
             }
             else if (x == XLength - 1 && y == YLength - 1) // Bottom right
             {
-                if (Layout[XLength - 1, YLength - 2] == 10)
+                if (Layout[XLength - 1, YLength - 2] == 10 || Layout[XLength - 1, YLength - 2] == 11 || Layout[XLength - 1, YLength - 2] == 13)
                     mines++;
-                if (Layout[XLength - 2, YLength - 2] == 10)
+                if (Layout[XLength - 2, YLength - 2] == 10 || Layout[XLength - 2, YLength - 2] == 11 || Layout[XLength - 2, YLength - 2] == 13)
                     mines++;
-                if (Layout[XLength - 2, YLength - 1] == 10)
+                if (Layout[XLength - 2, YLength - 1] == 10 || Layout[XLength - 2, YLength - 1] == 11 || Layout[XLength - 2, YLength - 1] == 13)
                     mines++;
             }
 
@@ -221,7 +248,7 @@ namespace Minesweeper
                 {
                     for (int j = 0; j < 2; j++) //Y
                     {
-                        if (Layout[i + x, j + y] == 10)
+                        if (Layout[i + x, j + y] == 10 || Layout[i + x, j + y] == 11 || Layout[i + x, j + y] == 13)
                             mines++;
                     }
                 }
@@ -233,7 +260,7 @@ namespace Minesweeper
                 {
                     for (int j = 0; j > -2; j--)
                     {
-                        if (Layout[i + x, j + y] == 10)
+                        if (Layout[i + x, j + y] == 10 || Layout[i + x, j + y] == 11 || Layout[i + x, j + y] == 13)
                             mines++;
                     }
                 }
@@ -244,7 +271,7 @@ namespace Minesweeper
                 {
                     for (int j = -1; j < 2; j++)
                     {
-                        if (Layout[i, j + y] == 10)
+                        if (Layout[i, j + y] == 10 || Layout[i, j + y] == 11 || Layout[i, j + y] == 13)
                             mines++;
                     }
                 }
@@ -255,7 +282,7 @@ namespace Minesweeper
                 {
                     for (int j = -1; j < 2; j++)
                     {
-                        if (Layout[XLength - 1 + i, j + y] == 10)
+                        if (Layout[XLength - 1 + i, j + y] == 10 || Layout[XLength - 1 + i, j + y] == 11 || Layout[XLength - 1 + i, j + y] == 13)
                             mines++;
                     }
                 }
@@ -267,7 +294,7 @@ namespace Minesweeper
                 {
                     for (int j = -1; j < 2; j++)
                     {
-                        if (Layout[x + i, y + j] == 10)
+                        if (Layout[x + i, y + j] == 10 || Layout[x + i, y + j] == 11 || Layout[x + i, y + j] == 13)
                             mines++;
                     }
                 }
@@ -294,7 +321,7 @@ namespace Minesweeper
         }
         private static int lives = 1;
         public static byte Marks { get; set; } = 0;
-        public static char Look { get; set; } = '+'; // How the cursor looks like during the game.
+        public static char Look { get; set; } = '＋'; // How the cursor looks like during the game.
         public static int XPosition { get; set; } = 0;
         public static int YPosition { get; set; } = 0;
         /// <summary>
@@ -308,22 +335,29 @@ namespace Minesweeper
                 case ConsoleKey.UpArrow:
                     if (YPosition != 0)
                         YPosition--;
-                    Look = '^';
+                    Look = 'へ';
+                    MoveCursor(XPosition, YPosition + 1, XPosition, YPosition);
                     break;
+
                 case ConsoleKey.DownArrow:
                     if (YPosition != Map.YLength - 1)
                         YPosition++;
-                    Look = 'v';
+                    Look = 'Ⅴ';
+                    MoveCursor(XPosition, YPosition - 1, XPosition, YPosition);
                     break;
+
                 case ConsoleKey.LeftArrow:
                     if (XPosition != 0)
                         XPosition--;
-                    Look = '<';
+                    Look = '＜';
+                    MoveCursor(XPosition + 1, YPosition, XPosition, YPosition);
                     break;
+
                 case ConsoleKey.RightArrow:
                     if (XPosition != Map.XLength - 1)
                         XPosition++;
-                    Look = '>';
+                    Look = '＞';
+                    MoveCursor(XPosition - 1, YPosition, XPosition, YPosition);
                     break;
 
                 case ConsoleKey.W:
@@ -341,12 +375,16 @@ namespace Minesweeper
                     {
                         case 10: //Unmarked mine
                             Lives--;
+                            Marks++;
                             Map.Layout[XPosition, YPosition] = 11;
                             break;
                         case 13: //Marked mine
-                            goto case 10;
+                            Lives--;
+                            Map.Layout[XPosition, YPosition] = 11;
+                            break;
                         case 11: //Revealed mine
-                            goto case 10;
+                            Lives--;
+                            break;
                         case 12: //Unrevealed position without mines
                             Map.Layout[XPosition, YPosition] = Map.CheckMines(XPosition, YPosition);
                             break;
@@ -379,17 +417,60 @@ namespace Minesweeper
             }
 
         }
-        public static void ShowCursor()
+        public static void MoveCursor(int previousX, int previousY, int newX, int newY)
         {
             int previousCursorLeft = Console.CursorLeft;
             int previousCursorTop  = Console.CursorTop ;
-            Console.SetCursorPosition(XPosition + 1, YPosition + 1);
-            Console.Write(Look);
-            Console.SetCursorPosition(previousCursorLeft, previousCursorTop);
-        }
-        public static void MoveCursor()
-        {
 
+            Console.SetCursorPosition(newX * 2 + 1, newY + 1);
+            Console.Write(Look);
+
+            Console.SetCursorPosition(previousX * 2 + 1, previousY + 1);
+
+            switch(Map.Layout[previousX, previousY])
+            {
+                case 0:
+                    Console.Write("　");
+                    break;
+                case 1:
+                    Console.Write("１");
+                    break;
+                case 2:
+                    Console.Write("２");
+                    break;
+                case 3:
+                    Console.Write("３");
+                    break;
+                case 4:
+                    Console.Write("４");
+                    break;
+                case 5:
+                    Console.Write("５");
+                    break;
+                case 6:
+                    Console.Write("６");
+                    break;
+                case 7:
+                    Console.Write("７");
+                    break;
+                case 8:
+                    Console.Write("８");
+                    break;
+                case 9:
+                    Console.Write("＋");
+                    break;
+                case 10:
+                    goto case 12;
+                case 11:
+                    Console.Write("＊");
+                    break;
+                case 12:
+                    Console.Write("＃");
+                    break;
+                case 13:
+                    goto case 9;
+            }
+            Console.SetCursorPosition(previousCursorLeft, previousCursorTop);
         }
     }
 }

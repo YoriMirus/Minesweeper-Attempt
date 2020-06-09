@@ -8,7 +8,7 @@ namespace Minesweeper
     {
         private static Random MinePlacer = new Random();
         /// <summary>
-        /// Fills the map with a default character - O.
+        /// Fills the map with the default number 12.
         /// </summary>
         /// <param name="array"></param>
         private static void Fill()

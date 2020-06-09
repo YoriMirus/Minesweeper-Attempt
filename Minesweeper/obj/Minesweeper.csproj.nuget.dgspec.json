@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hanaw\\Documents\\GitHub\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj": {}
+    "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hanaw\\Documents\\GitHub\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj": {
+    "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hanaw\\Documents\\GitHub\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj",
+        "projectUniqueName": "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj",
         "projectName": "Minesweeper",
-        "projectPath": "C:\\Users\\hanaw\\Documents\\GitHub\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj",
-        "packagesPath": "C:\\Users\\hanaw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hanaw\\Documents\\GitHub\\Minesweeper-Attempt\\Minesweeper\\obj\\",
+        "projectPath": "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\Minesweeper.csproj",
+        "packagesPath": "C:\\Users\\vojta\\.nuget\\packages\\",
+        "outputPath": "F:\\GitHub repository\\Minesweeper-Attempt\\Minesweeper\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hanaw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vojta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -47,18 +47,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
