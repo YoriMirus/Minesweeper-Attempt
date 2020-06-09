@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 namespace Minesweeper
 {
     //Part of the class Map that contains methods and properties that are useful to other classes
@@ -22,24 +23,110 @@ namespace Minesweeper
          * 9 = Marked empty space
          * 13 = Marked mine
          * 10 = Undiscovered mine
-         * 11 = Discovered mine
+         * 11 = Discovered mine (in case I want to implement multiple lives)
          * 12 = Not yet revealed
          */
         public static int MinesAmount { get; set; }
-        public static int XLength { get; } = 20;
-        public static int YLength { get; } = 10;
-        /// <summary>
-        /// Map that the player sees
-        /// </summary>
-        public static int[,] Layout { get; set; } = new int[XLength, YLength];
+        public static int MinesLeft { get; set; }
+        public static int XLength { get; set; }
+        public static int YLength { get; set; }
+        public static int[,] Layout { get; set; }
 
         /// <summary>
-        /// Prepares the map for a game. Mines = amount of mines in the field.
+        /// Prepares the map and cursor for a game. Asks the player for amount of mines and lives.
         /// </summary>
-        public static void Prepare(int mines)
+        public static void Prepare()
         {
-            Fill(Layout);
+            int lives;
+            int mines;
+            Console.WriteLine("Welcome to minesweeper!");
+            Console.WriteLine("Use arrows or WASD to move with a cursor.");
+            Console.WriteLine("Once you choose a field press enter to reveal it.");
+            Console.WriteLine("If you suspect there is a mine press space to mark it.");
+            Console.WriteLine("Press anything to continue.");
+            Console.ReadKey();
+            Console.Clear();
+
+            while (true)
+            {
+                try
+                {
+                    Exception e = new Exception();
+                    Console.WriteLine("How large do you want the field to be?");
+                    Console.WriteLine("Each dimension can't be larger than 50.");
+
+                    Console.Write("Left to right: ");
+                    XLength = int.Parse(Console.ReadLine());
+
+                    Console.Write("Top to bottom: ");
+                    YLength = int.Parse(Console.ReadLine());
+
+                    if ((XLength > 50 || YLength > 50) || (XLength < 1 || YLength < 1))
+                        throw e;
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Sorry. Either you didn't input a number,");
+                    Console.WriteLine("or it didn't meet the requirements.");
+                    Console.WriteLine("Please try again!");
+                    Thread.Sleep(500);
+                    Console.Clear();
+                }
+            }
+
+            Console.Clear();
+
+            while (true)
+            {
+                try
+                {
+                    Exception e = new Exception();
+                    Console.WriteLine("How many lives do you want?(1 = fail after one mine)");
+                    Console.Write("Lives: ");
+                    Cursor.Lives = int.Parse(Console.ReadLine());
+                    if (Cursor.Lives < 1)
+                        throw e;
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Sorry, but you can't put that in there.");
+                    Console.WriteLine("Either you put a number too low or didn't type it properly.");
+                    Console.WriteLine("Please try again");
+                    Thread.Sleep(500);
+                    Console.Clear();
+                }
+            }
+
+            Console.Clear();
+
+            while (true)
+            {
+                try
+                {
+                    Exception e = new Exception();
+                    Console.WriteLine("How many mines do you want?");
+                    Console.WriteLine("The number must fit the field!");
+                    Console.Write("Mines: ");
+                    mines = int.Parse(Console.ReadLine());
+
+                    if (XLength * YLength < mines)
+                        throw e;
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Sorry! Seems like you didn't put a number,");
+                    Console.WriteLine("or the number was too large!");
+                    Console.WriteLine("Try again!");
+                }
+            }
+
+            Layout = new int[XLength, YLength];
+            Fill();
             MinesAmount = mines;
+            MinesLeft = mines;
             SetMines(mines);
         }
         public static void Display()
@@ -66,7 +153,6 @@ namespace Minesweeper
                             break;
                         case 12: //Unrevealed position
                             goto case 10;
-                            break;
                         case 13: //Marked mine
                             goto case 9;
                         default:
@@ -191,10 +277,29 @@ namespace Minesweeper
     }
     partial class Cursor
     {
+        public static int Lives
+        {
+            get
+            {
+                return lives;
+            }
+            set
+            {
+                lives = value;
+                if(lives < 1)
+                {
+                    Program.ProgramRun = false;
+                }
+            }
+        }
+        private static int lives = 1;
+        public static byte Marks { get; set; } = 0;
         public static char Look { get; set; } = '+'; // How the cursor looks like during the game.
         public static int XPosition { get; set; } = 0;
         public static int YPosition { get; set; } = 0;
-
+        /// <summary>
+        /// Reads keyboard input and makes actions based on that
+        /// </summary>
         public static void Actions()
         {
             switch (Console.ReadKey().Key)
@@ -220,6 +325,7 @@ namespace Minesweeper
                         XPosition++;
                     Look = '>';
                     break;
+
                 case ConsoleKey.W:
                     goto case ConsoleKey.UpArrow;
                 case ConsoleKey.S:
@@ -229,14 +335,13 @@ namespace Minesweeper
                 case ConsoleKey.D:
                     goto case ConsoleKey.RightArrow;
 
-                //Other actions
-
                 //Reveal
                 case ConsoleKey.Enter:
                     switch(Map.Layout[XPosition, YPosition])
                     {
                         case 10: //Unmarked mine
-                            Program.ProgramRun = false;
+                            Lives--;
+                            Map.Layout[XPosition, YPosition] = 11;
                             break;
                         case 13: //Marked mine
                             goto case 10;
@@ -254,16 +359,20 @@ namespace Minesweeper
                     {
                         case 10: //Marking a mine
                             Map.Layout[XPosition, YPosition] = 13;
+                            Marks++;
                             break;
                         case 13: //Unmarking a mine
                             Map.Layout[XPosition, YPosition] = 10;
+                            Marks--;
                             break;
 
                         case 9: //Unmarking empty space
                             Map.Layout[XPosition, YPosition] = 12;
+                            Marks--;
                             break;
-                        case 12: //Unmarking empty space
+                        case 12: //Marking empty space
                             Map.Layout[XPosition, YPosition] = 9;
+                            Marks++;
                             break;
                     }
                     break;
@@ -277,6 +386,10 @@ namespace Minesweeper
             Console.SetCursorPosition(XPosition + 1, YPosition + 1);
             Console.Write(Look);
             Console.SetCursorPosition(previousCursorLeft, previousCursorTop);
+        }
+        public static void MoveCursor()
+        {
+
         }
     }
 }

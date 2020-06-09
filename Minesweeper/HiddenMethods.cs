@@ -11,12 +11,12 @@ namespace Minesweeper
         /// Fills the map with a default character - O.
         /// </summary>
         /// <param name="array"></param>
-        private static void Fill(int[,] array)
+        private static void Fill()
         {
             for(int i = 0; i < YLength; i++)
             {
                 for (int j = 0; j < XLength; j++)
-                    array[j, i] = 12;
+                    Layout[j, i] = 12;
             }
         }
         private static void SetMines(int mines)
