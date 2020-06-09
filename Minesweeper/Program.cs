@@ -8,7 +8,6 @@ namespace Minesweeper
         static void Main(string[] args)
         {
             Map.Prepare(20);
-
             while (ProgramRun)
             {
                 Map.Display();
