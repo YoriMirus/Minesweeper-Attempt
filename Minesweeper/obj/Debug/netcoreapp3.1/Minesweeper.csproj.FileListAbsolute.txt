@@ -24,3 +24,16 @@ F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Min
 F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.dll
 F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.pdb
 F:\GitHub repository\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.genruntimeconfig.cache
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.exe
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.deps.json
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.runtimeconfig.json
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.runtimeconfig.dev.json
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.dll
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\bin\Debug\netcoreapp3.1\Minesweeper.pdb
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.csprojAssemblyReference.cache
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.AssemblyInfoInputs.cache
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.AssemblyInfo.cs
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.csproj.CoreCompileInputs.cache
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.dll
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.pdb
+C:\Users\hanaw\Documents\GitHub\Minesweeper-Attempt\Minesweeper\obj\Debug\netcoreapp3.1\Minesweeper.genruntimeconfig.cache

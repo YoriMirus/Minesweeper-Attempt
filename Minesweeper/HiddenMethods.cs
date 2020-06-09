@@ -11,12 +11,12 @@ namespace Minesweeper
         /// Fills the map with a default character - O.
         /// </summary>
         /// <param name="array"></param>
-        private static void Fill(char[,] array)
+        private static void Fill(int[,] array)
         {
             for(int i = 0; i < YLength; i++)
             {
                 for (int j = 0; j < XLength; j++)
-                    array[j, i] = 'O';
+                    array[j, i] = 12;
             }
         }
         private static void SetMines(int mines)
@@ -27,9 +27,9 @@ namespace Minesweeper
                 int x = MinePlacer.Next(0, XLength); //X position of a mine
                 int y = MinePlacer.Next(0, YLength); //Y position of a mine
 
-                if (Map_Layout[x, y] != '*')
+                if (Layout[x, y] != 10)
                 {
-                    Map_Layout[x, y] = '*';
+                    Layout[x, y] = 10;
                     i++;
                 }
             }
