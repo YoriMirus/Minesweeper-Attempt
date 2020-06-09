@@ -4,53 +4,71 @@ namespace Minesweeper
     //Part of the class Map that contains methods and properties that are useful to other classes
     partial class Map
     {
+        /*
+         * 0 = 0
+         * 1 = 1
+         * 2 = 2
+         * 3 = 3
+         * 4 = 4
+         * 5 = 5
+         * 6 = 6
+         * 7 = 7
+         * 8 = 8
+         * 
+         * 9 = Marker
+         * 10 = Undiscovered mine
+         * 11 = Discovered mine
+         * 12 = Not yet revealed
+         */
         public static int MinesAmount { get; set; }
         public static int XLength { get; } = 20;
         public static int YLength { get; } = 10;
         /// <summary>
         /// Map that the player sees
         /// </summary>
-        public static char[,] Map_Visible { get; set; } = new char[XLength, YLength];
-        /// <summary>
-        /// Layout of all mines.
-        /// </summary>
-        public static char[,] Map_Layout { get; set; } = new char[XLength, YLength];
+        public static int[,] Layout { get; set; } = new int[XLength, YLength];
 
         /// <summary>
         /// Prepares the map for a game. Mines = amount of mines in the field.
         /// </summary>
         public static void Prepare(int mines)
         {
-            Fill(Map_Layout);
-            Fill(Map_Visible);
+            Fill(Layout);
             MinesAmount = mines;
             SetMines(mines);
         }
-
-        /// <summary>
-        /// Displays the map layout to the console. 0 = Map_Visible, 1 = Map_Layout.
-        /// </summary>
-        /// <param name="mapType"></param>
-        public static void Display(int mapType)
+        public static void Display()
         {
-            if(mapType == 0)
-                for(int i = 0; i < YLength; i++)
+            for (int i = 0; i < XLength + 2; i++)
+                Console.Write("-");
+            Console.WriteLine();
+
+            for(int i = 0; i < YLength; i++)
+            {
+                Console.Write("|");
+                for (int j = 0; j < XLength; j++)
                 {
-                    for (int j = 0; j < XLength; j++)
+                    switch(Layout[j, i])
                     {
-                        Console.Write(Map_Visible[j, i]);
+                        case  9:
+                            Console.Write("+");
+                            break;
+                        case 10:
+                            Console.Write(" ");
+                            break;
+                        case 11:
+                            Console.Write("*");
+                            break;
+                        case 12:
+                            goto case 10;
                     }
-                    Console.WriteLine();
                 }
-            else if(mapType == 1)
-                for (int i = 0; i < YLength; i++)
-                {
-                    for (int j = 0; j < XLength; j++)
-                    {
-                        Console.Write(Map_Layout[j, i]);
-                    }
-                    Console.WriteLine();
-                }
+                Console.WriteLine("|");
+            }
+
+            for (int i = 0; i < XLength + 2; i++)
+                Console.Write("-");
+            Console.WriteLine();
         }
     }
     partial class Cursor
@@ -89,6 +107,10 @@ namespace Minesweeper
                     goto case ConsoleKey.RightArrow;
 
                 //Other actions
+
+                //Reveal
+                case ConsoleKey.Enter:
+
             }
 
         }
@@ -96,7 +118,7 @@ namespace Minesweeper
         {
             int previousCursorLeft = Console.CursorLeft;
             int previousCursorTop  = Console.CursorTop ;
-            Console.SetCursorPosition(XPosition, YPosition);
+            Console.SetCursorPosition(XPosition + 1, YPosition + 1);
             Console.Write("+");
             Console.SetCursorPosition(previousCursorLeft, previousCursorTop);
         }

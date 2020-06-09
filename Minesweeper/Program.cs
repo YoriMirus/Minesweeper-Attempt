@@ -11,7 +11,7 @@ namespace Minesweeper
 
             while (ProgramRun)
             {
-                Map.Display(0);
+                Map.Display();
                 Cursor.ShowCursor();
                 Cursor.Actions();
                 Console.Clear();
