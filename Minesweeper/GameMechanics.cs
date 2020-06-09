@@ -146,36 +146,46 @@ namespace Minesweeper
                             Console.Write("　");
                             break;
                         case 1:
+                            Console.ForegroundColor = ConsoleColor.Blue;
                             Console.Write("１");
                             break;
                         case 2:
+                            Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.Write("２");
                             break;
                         case 3:
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("３");
                             break;
                         case 4:
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.Write("４");
                             break;
                         case 5:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write("５");
                             break;
                         case 6:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write("６");
                             break;
                         case 7:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write("７");
                             break;
                         case 8:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write("８");
                             break;
                         case  9: //Mark on empty space
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Console.Write("＋");
                             break;
                         case 10: //Unrevealed unmarked mine
                             Console.Write("＃");
                             break;
                         case 11: //Revealed mine
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
                             Console.Write("＊");
                             break;
                         case 12: //Unrevealed position
@@ -186,6 +196,7 @@ namespace Minesweeper
                             Console.Write(Layout[j, i]);
                             break;
                     }
+                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
                 Console.WriteLine("｜");
             }
@@ -195,7 +206,8 @@ namespace Minesweeper
             Console.WriteLine();
         }
         /// <summary>
-        /// Checks for mines around a position
+        /// Checks for mines around a position. If there are no mines nearby, reveals nearby positions. The number is automatically assigned to the position.
+        /// Has the ability to return how many mines around the position were found.
         /// </summary>
         /// <returns></returns>
         public static int CheckMines(int x, int y)
@@ -299,6 +311,13 @@ namespace Minesweeper
                     }
                 }
             }
+
+            Layout[x, y] = mines;
+
+            if(mines == 0)
+            {
+                SafeReveal(x, y);
+            }
             return mines;
         }
     }
@@ -386,7 +405,11 @@ namespace Minesweeper
                             Lives--;
                             break;
                         case 12: //Unrevealed position without mines
-                            Map.Layout[XPosition, YPosition] = Map.CheckMines(XPosition, YPosition);
+                            if(Map.CheckMines(XPosition, YPosition) == 0) //Redisplays map if 0 mines found
+                            {
+                                Console.Clear();
+                                Map.Display();
+                            }
                             break;
                     }
                     break;
@@ -422,10 +445,10 @@ namespace Minesweeper
             int previousCursorLeft = Console.CursorLeft;
             int previousCursorTop  = Console.CursorTop ;
 
-            Console.SetCursorPosition(newX * 2 + 1, newY + 1);
+            Console.SetCursorPosition(newX * 2 + 2, newY + 1);
             Console.Write(Look);
 
-            Console.SetCursorPosition(previousX * 2 + 1, previousY + 1);
+            Console.SetCursorPosition(previousX * 2 + 2, previousY + 1);
 
             switch(Map.Layout[previousX, previousY])
             {
@@ -433,35 +456,45 @@ namespace Minesweeper
                     Console.Write("　");
                     break;
                 case 1:
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write("１");
                     break;
                 case 2:
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write("２");
                     break;
                 case 3:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("３");
                     break;
                 case 4:
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.Write("４");
                     break;
                 case 5:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("５");
                     break;
                 case 6:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("６");
                     break;
                 case 7:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("７");
                     break;
                 case 8:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("８");
                     break;
                 case 9:
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.Write("＋");
                     break;
                 case 10:
                     goto case 12;
                 case 11:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.Write("＊");
                     break;
                 case 12:
@@ -471,6 +504,7 @@ namespace Minesweeper
                     goto case 9;
             }
             Console.SetCursorPosition(previousCursorLeft, previousCursorTop);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

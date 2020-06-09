@@ -21,9 +21,8 @@ namespace Minesweeper
             {
                 Cursor.Actions();
                 Console.SetCursorPosition(12, Map.YLength + 2);
-                Console.WriteLine(Cursor.Lives + "   ");
-                Console.SetCursorPosition(8, Console.CursorTop);
-                Console.Write("{0}/{1}", Cursor.Marks, Map.MinesAmount);
+                Console.WriteLine("Lives left: {0}   ", Cursor.Lives);
+                Console.WriteLine("Marks: {0}/{1}", Cursor.Marks, Map.MinesAmount);
             }
         }
     }
