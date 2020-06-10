@@ -4,16 +4,26 @@ namespace Minesweeper
 {
     class Program
     {
-        public static bool ProgramRun = true; //Tells you, if the game has ended or not.
-        static void Main(string[] args)
+        public static bool ProgramRun = true; //If set to false, the game stops
+        /// <summary>
+        /// Writes into the console the GUI, that the user sees and interacts with.
+        /// </summary>
+        static void Main()
         {
-            Map.Prepare(20);
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Map.Prepare();
+            Map.FirstReveal();
+            Console.Clear();
+            Map.DisplayAll();
+            Console.WriteLine("Lives left: {0}   ", Cursor.Lives);
+            Console.WriteLine("Marks: {0}/{1}", Cursor.Marks, Map.MinesAmount);
+
             while (ProgramRun)
             {
-                Map.Display();
-                Cursor.ShowCursor();
                 Cursor.Actions();
-                Console.Clear();
+                Console.SetCursorPosition(0, Map.YLength + 2);
+                Console.WriteLine("Lives left: {0}   ", Cursor.Lives);
+                Console.WriteLine("Marks: {0}/{1}", Cursor.Marks, Map.MinesAmount);
             }
         }
     }
